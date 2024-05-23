@@ -1,0 +1,11 @@
+// underscore "_" in file name means
+// it's a sub file
+
+@function getColWidth($colsNeeded, $colsTotal, $gapWidth) {
+  // calc is native css function
+  // to use sass var - wrap it in #{}
+  @return calc(
+    ($colsNeeded * (100% - (#{$colsTotal} - 1) * #{$gapWidth}) / #{$colsTotal}) +
+      #{$colsNeeded - 1} * #{$gapWidth}
+  );
+}

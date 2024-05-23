@@ -1,0 +1,26 @@
+// This file is like index.jsx in React
+// importing files just like in React
+@import "./abstracts/function";
+@import "./abstracts/mixins";
+@import "./abstracts/variables";
+
+@import "./base/base";
+@import "./base/animations";
+@import "./base/typography";
+@import "./base/utilities";
+
+@import "./components/button";
+@import "./components/collage";
+@import "./components/feature-box";
+@import "./components/tour-box";
+@import "./components/storie";
+@import "./components/bg-video";
+@import "./components/form";
+@import "./components/popup";
+
+@import "./layout/navigation";
+@import "./layout/header";
+@import "./layout/grid";
+@import "./layout/footer";
+
+@import "./pages/home";

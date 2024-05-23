@@ -1,0 +1,140 @@
+.form {
+  &__group:not(:last-child) {
+    margin-bottom: 2rem;
+
+    @include respond(tab-port) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &__input {
+    display: block;
+
+    width: 90%;
+    padding: 1.5rem 2rem;
+
+    color: inherit;
+    font-family: inherit;
+    font-size: $font-size-default;
+
+    background-color: rgba($color-white, 0.5);
+
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: $border-radius-small;
+
+    transition: all 0.3s ease-out;
+
+    @include respond(tab-port) {
+      padding: 1rem 1.5rem;
+      width: 75%;
+    }
+
+    &:focus {
+      outline: none;
+
+      border-bottom: 2px solid $color-primary;
+      box-shadow: $shadow-default;
+
+      &:invalid {
+        border-bottom: 2px solid $color-secondary-dark;
+      }
+    }
+
+    &::-webkit-input-placeholder {
+      color: $color-grey-dark-2;
+    }
+  }
+
+  &__label {
+    display: block;
+
+    // Align it w/ input's placeholder x-axis
+    margin: 0.7rem 0 0 2.1rem;
+
+    @include respond(tab-port) {
+      margin: 0.7rem 0 0 1.5rem;
+    }
+
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    transition: all 0.15s ease-out;
+  }
+
+  // Select any element's child that is a
+  // next direct sibling of .form__input:placeholder-shown
+  *:has(+ &__input:placeholder-shown) {
+    opacity: 0;
+    visibility: hidden;
+
+    // Put it at input's placeholder place,
+    // so it would appear going up when typing
+    transform: translateY(3.6rem);
+  }
+
+  &__radio-group {
+    // To align the labels
+    display: inline-block;
+    width: 49%;
+
+    @include respond(tab-port) {
+      padding: 1rem 0;
+      width: 70%;
+    }
+  }
+
+  &__radio-label {
+    position: relative;
+
+    padding-left: 4rem;
+
+    font-size: $font-size-default;
+    cursor: pointer;
+  }
+
+  &__radio-button {
+    display: inline-block;
+
+    width: 2.8rem;
+    height: 2.8rem;
+
+    border: 4px solid $color-primary;
+    border-radius: 50%;
+
+    // Align the button with text
+    position: absolute;
+    top: -0.4rem;
+    left: 0;
+
+    // Mini circle inside of the button when selected
+    &::after {
+      content: "";
+      display: block;
+
+      width: 1.3rem;
+      height: 1.3rem;
+
+      background-color: $color-primary;
+      border-radius: 50%;
+
+      opacity: 0;
+
+      // It has to be in the center of the bigger circle
+      @include absoluteCenter;
+
+      transition: all 0.2s ease-out;
+    }
+  }
+
+  // real radio checked -> its sibling real label -> pseudo (custom) radio
+  // To imitate real radio behavior on the custom one
+  &__radio-input:checked ~ &__radio-label &__radio-button::after {
+    opacity: 1;
+  }
+
+  // Hide the real radio
+  &__radio-input {
+    display: none;
+  }
+}

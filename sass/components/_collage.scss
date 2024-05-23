@@ -1,0 +1,45 @@
+.collage {
+  position: relative;
+
+  height: 50vh;
+  @include respond(tab-port) {
+    height: 27vh;
+  }
+
+  &__photo {
+    // width of an img should be in percents
+    width: 55%;
+    position: absolute;
+
+    outline-offset: 1rem;
+    box-shadow: $shadow-default;
+    transition: all 0.2s;
+
+    &--1 {
+      top: 0;
+      left: 0;
+    }
+    &--2 {
+      top: 20%;
+      right: 0;
+    }
+    &--3 {
+      top: 45%;
+      left: 15%;
+    }
+
+    &:hover {
+      z-index: 10;
+
+      // outline is like a border
+      outline: 1rem solid $color-primary;
+
+      transform: scale(1.05) translateY(-0.5rem);
+    }
+  }
+
+  // When one photo is hovered - others scale down
+  &:hover &__photo:not(:hover) {
+    transform: scale(0.95);
+  }
+}

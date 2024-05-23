@@ -1,0 +1,18 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Landing page",
+  "main": "index.js",
+  "scripts": {
+    "watch:sass": "sass ./sass/main.scss ./css/style.css -w",
+    "compile:sass": "sass ./sass/main.scss ./css/style.comp.css",
+    "prefix:css": "postcss css/style.comp.css -o css/style.prefix.css --use autoprefixer"
+  },
+  "author": "Kobe",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "concat": "^1.0.3",
+    "postcss-cli": "^11.0.0"
+  }
+}

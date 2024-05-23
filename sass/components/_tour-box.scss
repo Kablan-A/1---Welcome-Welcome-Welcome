@@ -1,0 +1,245 @@
+.tour-box {
+  position: relative;
+  // Because of absolute positioning - height collapses
+  // So it must be specified on both tour-box and side sides
+  height: 52rem;
+
+  // perspective makes the card's rotation smoother
+  // it has to be on the parent-element and a huge value
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+
+  // So for everything inside
+  // we create a child element
+  &__side {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 52rem;
+
+    border-radius: $border-radius-small;
+    // so bg image doesn't overlap the rounded corners
+    overflow: hidden;
+    box-shadow: $shadow-default;
+
+    // Hides the back side before the hover
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: all 0.5s ease;
+
+    &--front {
+      background-color: $color-white;
+    }
+
+    &--back {
+      // It's initially already rotated 180deg
+      // so we need to rotate to 0deg like so
+      transform: rotateY(180deg);
+
+      &-1 {
+        @include gradientBg($color-secondary-light, $color-secondary-dark);
+      }
+
+      &-2 {
+        @include gradientBg($color-primary-light, $color-primary-dark);
+      }
+
+      &-3 {
+        @include gradientBg($color-tertiary-light, $color-tertiary-dark);
+      }
+    }
+  }
+
+  // And apply the rotation on the child element - front side
+  // because we don't need to rotate the back side
+  &:hover &__side--front {
+    transform: rotateY(-180deg);
+  }
+
+  &:hover &__side--back {
+    transform: rotateY(0deg);
+  }
+
+  // Front styling
+  &__photo {
+    height: 23rem;
+
+    // Instead of lowering the opacity in rgba
+    // we can use blend mode,
+    // so the bg image is colored into linear gradient
+    background-blend-mode: overlay;
+    background-size: cover;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+    &--1 {
+      background-image: linear-gradient(
+          to right bottom,
+          $color-secondary-light,
+          $color-secondary-dark
+        ),
+        url(../../img/nat-5.jpg);
+    }
+
+    &--2 {
+      background-image: linear-gradient(
+          to right bottom,
+          $color-primary-light,
+          $color-primary-dark
+        ),
+        url(../../img/nat-6.jpg);
+    }
+
+    &--3 {
+      background-image: linear-gradient(
+          to right bottom,
+          $color-tertiary-light,
+          $color-tertiary-dark
+        ),
+        url(../../img/nat-7.jpg);
+    }
+  }
+
+  &__heading {
+    color: $color-white;
+    text-align: right;
+    font-size: 2.8rem;
+    font-weight: 200;
+    text-transform: uppercase;
+
+    width: 70%;
+    position: absolute;
+    top: 12rem;
+    right: 2rem;
+  }
+
+  // Didn't add to &__heading because
+  // altough a child, but a separate element
+  &__heading-span {
+    padding: 1rem 1.5rem;
+
+    // Treats text as separate elements
+    // when they're on different lines.
+    // Done so that padding would apply on both lines
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+
+    &--1 {
+      @include gradientBg($color-secondary-light, $color-secondary-dark);
+    }
+
+    &--2 {
+      @include gradientBg($color-primary-light, $color-primary-dark);
+    }
+
+    &--3 {
+      @include gradientBg($color-tertiary-light, $color-tertiary-dark);
+    }
+  }
+
+  &__details-list {
+    padding: 1.5rem;
+
+    font-size: $font-size-default;
+    text-align: center;
+    list-style: none;
+
+    &__item {
+      padding: 1rem;
+
+      &:not(:last-child) {
+        border-bottom: 2px solid $color-grey-light-2;
+      }
+    }
+  }
+
+  // Back styling
+  &__cta {
+    width: 100%;
+    padding: 1.5rem;
+    text-align: center;
+
+    @include absoluteCenter;
+  }
+
+  &__price-box {
+    color: $color-white;
+  }
+
+  &__price-only {
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &__price-value {
+    font-size: 9rem;
+    font-weight: 300;
+  }
+
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    height: auto;
+
+    &__side {
+      display: block;
+      position: relative;
+
+      &--front {
+        height: auto;
+      }
+
+      &--back {
+        margin-top: -9rem;
+
+        height: 30rem;
+
+        transform: rotateY(0);
+
+        -webkit-clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    &:hover &__side--front {
+      transform: rotateY(0);
+    }
+
+    // Front styling
+    &__photo {
+      height: 30rem;
+    }
+
+    &__heading {
+      width: 50%;
+
+      top: 18rem;
+      right: 2rem;
+    }
+
+    &__details-list {
+      padding-bottom: 10rem;
+
+      font-size: 2rem;
+    }
+  }
+
+  &__cta {
+    padding-top: 5rem 2rem 2rem 2rem;
+  }
+
+  // Back styling
+  &__price-box {
+    margin-bottom: 1rem !important;
+    color: $color-white;
+  }
+
+  &__price-only {
+    // display: none;
+  }
+
+  &__price-value {
+    font-size: 8rem;
+  }
+}

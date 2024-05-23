@@ -1,0 +1,47 @@
+// underscore "_" in file name means
+// it's a sub file
+
+/* COLOR variables: */
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff7730;
+
+$color-tertiary-light: #2998ff;
+$color-tertiary-dark: #5643fa;
+
+$color-white: #fff;
+$color-black: #000;
+
+$color-grey-light-1: #f7f7f7;
+$color-grey-light-2: #f8f8f8;
+
+$color-grey-dark-1: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+
+// Font-size
+$font-size-default: 1.6rem;
+$font-size-paragraph: 1.75rem;
+$font-size-heading-tertiary: 2rem;
+$font-size-large: 3rem;
+
+// Grid
+$grid-width-small: 55rem;
+$grid-width-big: 114rem;
+$gap-vertical-small: 6rem;
+$gap-vertical: 8rem;
+$gap-horizontal: 6rem;
+
+// Shadow
+$shadow-default: 0 1.5rem 4rem rgba($color-black, 0.2);
+
+// Border radius
+$border-radius-small: 3px;
+$border-radius-button: 10rem;
+
+// Burger
+$burger-position-top-right: 7rem;
+$burger-width-height: 6rem;

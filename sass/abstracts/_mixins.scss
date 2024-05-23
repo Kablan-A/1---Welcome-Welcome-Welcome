@@ -1,0 +1,79 @@
+// underscore "_" in file name means
+// it's a sub file
+
+@mixin clearFix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin gradientBg($color-from, $color-to) {
+  background-image: linear-gradient(to right bottom, $color-from, $color-to);
+}
+
+@mixin gradientImgBg($bgURL, $color-from, $color-to) {
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-from, 0.7),
+      rgba($color-to, 0.7)
+    ),
+    url($bgURL);
+  background-size: cover; /* background covers (fits) the box */
+}
+
+@mixin absoluteCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Media query manager
+/*
+0-600px: Phone
+600-900px: Tablet portrait
+900-1200px: Tablet landscape
+1200-1800px: Desktop (initial code)
+1800px+: Big Desktop
+
+Breakpoint arguments:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+1em=16
+
+ORDER: Base -> typography -> generl layout -> grid -> page layout -> components
+*/
+@mixin respond($breakpoint) {
+  // Just like switchcase
+  @if $breakpoint == phone {
+    // 600px
+    @media only screen and (max-width: 37.5em) {
+      // Content - pastes passed code
+      // written in plain css
+      @content;
+    }
+  }
+  @if $breakpoint == tab-port {
+    // 900px
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-land {
+    // 1200px
+    @media only screen and (max-width: 75em) {
+      @content;
+    }
+  }
+  @if $breakpoint == big-desktop {
+    // 1800px
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    }
+  }
+}

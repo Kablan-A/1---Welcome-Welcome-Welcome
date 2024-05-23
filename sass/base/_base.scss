@@ -1,0 +1,57 @@
+// underscore "_" in file name means
+// it's a sub file
+// This one is for basic definitions
+
+/* Basic reset for real and pseudo elements */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+
+  /* for width and height so padding and border do not add up to it */
+  box-sizing: inherit;
+}
+
+html {
+  /* specified for rem */
+  /* instead of using pixels - use % */
+  /* so it would depend on the user setting */
+  /* 62.5% = 10px, based on default 16px value */
+  /* using 10px is easier than 16 */
+  font-size: 62.5%;
+
+  // Desktop first deb
+  @include respond(tab-land) {
+    font-size: 56.25%; // 1rem = 9px
+  }
+  @include respond(tab-port) {
+    font-size: 50%; // 1rem = 8px
+  }
+  // @include respond(phone) {
+  //   font-size: 43.75%;
+  // }
+
+  @include respond(big-desktop) {
+    font-size: 75%; // 1rem = 12px
+  }
+}
+
+body {
+  padding: 3rem;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
+
+  /* it's better to put it here and not in * selector */
+  /* but make it inhereted in * selector */
+  box-sizing: border-box;
+
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}

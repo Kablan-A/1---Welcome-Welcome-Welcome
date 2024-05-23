@@ -1,0 +1,57 @@
+.header {
+  position: relative;
+
+  height: 95vh; /* 95% of view height */
+
+  @include respond(tab-land) {
+    height: 100vh;
+  }
+
+  @include gradientImgBg(
+    "../img/hero-small.jpg",
+    $color-primary-light,
+    $color-primary-dark
+  );
+  background-position: top; /* makes the image remain at the top */
+
+  // 192dpi - high res screen
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+    only screen and (min-width: 125em) {
+    @include gradientImgBg(
+      "../img/hero.jpg",
+      $color-primary-light,
+      $color-primary-dark
+    );
+  }
+
+  /* clips box in a polygon shape */
+  /* needs x and y coordiantes, clockwise */
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+
+  @include respond(tab-land) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
+  }
+  @include respond(phone) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 95vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 95vh, 0 100%);
+  }
+
+  // & - placeholder for class name it's nested in
+  // so & = .header in this case
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+  &__logo {
+    height: 35px;
+  }
+
+  &__text-box {
+    @include absoluteCenter;
+
+    text-align: center;
+  }
+}
